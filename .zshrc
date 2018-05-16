@@ -1,10 +1,15 @@
 ZSH=$HOME/.oh-my-zsh
-
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="xxf"
+
+ZSH_THEME="cobalt2"
+
+# Z jump
+. ~/z.sh
+
+
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -14,7 +19,7 @@ ZSH_THEME="xxf"
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
-  DISABLE_AUTO_UPDATE="true"
+DISABLE_AUTO_UPDATE="false"
 
 # Uncomment following line if you want to disable colors in ls
   DISABLE_LS_COLORS="true"
@@ -28,7 +33,7 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git dirhistory brew bower chucknorris dircycle gitfast git-extras jsontools node npm osx repo sudo urltools web-search dirpersist history-substring-search last-working-dir safe-paste yarn)
+plugins=(git dirhistory brew dircycle gitfast git-extras jsontools node npm osx repo sudo urltools web-search dirpersist history-substring-search last-working-dir safe-paste yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -36,18 +41,38 @@ source $ZSH/oh-my-zsh.sh
 PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 export PROMPT_COMMAND="${PROMPT_COMMAND} ${PROMPT_TITLE}; "
 
+ZSH_HIGHLIGHT_HIGHLIGHTERS=(main brackets pattern cursor)
 
+# Declare the variable
+typeset -A ZSH_HIGHLIGHT_STYLES
+
+# To differentiate aliases from other command types
+ZSH_HIGHLIGHT_STYLES[alias]='fg=cyan,bold'
+
+# To have paths colored instead of underlined
+ZSH_HIGHLIGHT_STYLES[path]='fg=magenta'
+
+ZSH_HIGHLIGHT_STYLES[cursor]='bg=pink'
+
+# To define styles for nested brackets up to level 4
+ZSH_HIGHLIGHT_STYLES[bracket-level-1]='fg=blue,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-2]='fg=red,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-3]='fg=yellow,bold'
+ZSH_HIGHLIGHT_STYLES[bracket-level-4]='fg=magenta,bold'
+
+ZSH_HIGHLIGHT_STYLES[root]='bg=red'
 
 # List of accounts to read the last tweet from, comma separated
 # The first in the list is read by the party parrot.
 export TTC_BOTS='tinycarebot,selfcare_bot,magicrealismbot'
 
+# Git Repos Refresh
 export TTC_GITBOT='gitlog'
-export TTC_REPOS_DEPTH=8
-export TTC_SAY_BOX='cat'
+# export TTC_REPOS_DEPTH=2
+export TTC_SAY_BOX='parrot'
 
 # List of folders to look into for `git` commits, comma separated.
-export TTC_REPOS='~/Desktop/Git_Repositories/checkyoself, ~/Desktop/Git_Repositories/TWBlog, ~/Desktop/Git_Repositories/npm_modules, ~/Desktop/Git_Repositories/Weather_App, ~/Desktop/Git_Repositories/new_resume, ~/Desktop/Git_Repositories/portfolio, ~/Desktop/Git_Repositories/freeCodeCamp, ~/Desktop/Git Repositories/exercism-solutions, ~/Desktop/Git_Repositories/web-developer-bootcamp'
+export TTC_REPOS='~/Desktop/Git_Repositories/checkyoself,~/Desktop/Git_Repositories/React-Redux-Udemy,~/Desktop/Git_Repositories/add-to-goodreads,~/Desktop/Git_Repositories/Weather_App,~/Desktop/Git_Repositories/resume,~/Desktop/Git_Repositories/portfolio,~/Desktop/Git_Repositories/freeCodeCamp,~/Desktop/Git_Repositories/YelpCamp,~/Desktop/Git_Repositories/my-first-ng-app,~/Desktop/Git_Repositories/React-Redux-Udemy,~/Desktop/Git_Repositories/Random Quote Generator,~/Desktop/Git_Repositories/dev.to_private,~/Desktop/Git_Repositories/ruby-practice,~/Desktop/Git_Repositories/blog,~/Desktop/Git_Repositories/tui.editor,~/Desktop/Git_Repositories/wes-bos-es6,~/Desktop/Git_Repositories/front_end_interview_flashcards,~/Desktop/Git_Repositories/wikipedia-viewer,~/Desktop/Git_Repositories/dev-landing-page,~/Desktop/Git_Repositories/React-For-Beginners-Starter-Files-master/catch-of-the-day,~/Desktop/Git_Repositories/various-algorithms'
 
 # Location/zip code to check the weather for. Both 90210 and "San Francisco, CA"
 # _should_ be ok (the zip code doesn't always work -- use a location
@@ -65,10 +90,7 @@ export TTC_APIKEYS=true
 export TTC_UPDATE_INTERVAL=10
 
 # Twitter api keys
-export TTC_CONSUMER_KEY=''
-export TTC_CONSUMER_SECRET=''
-export TTC_ACCESS_TOKEN=''
-export TTC_ACCESS_TOKEN_SECRET=''
+
 
 # Note: in tiny-terminal-care < 1.0.7, the recommended variables for the Twitter
 # API keys were the ones before. As of 1.0.8, they are deprecated
@@ -87,6 +109,14 @@ export GOROOT=$HOME/golang/go
 export PATH=$PATH:$GOROOT/bin
 export GOPATH=$HOME/Desktop/Git_Repositories
 
+#--------------------------------------------------------------------
+# Ruby Path fixes
+#--------------------------------------------------------------------
+
+# export PATH=$(brew --prefix)/opt/openssl/bin:$PATH
+# export LDFLAGS=-L/usr/local/opt/openssl/lib
+# export CPPFLAGS=-I/usr/local/opt/openssl/include
+# export PKG_CONFIG_PATH=$(brew --prefix)/opt/openssl/lib/pkgconfig
 
 # -------------------------------------------------------------------
 # Git aliases
@@ -108,7 +138,7 @@ alias gcl='git clone'
 alias gta='git tag -a -m'
 alias gf='git reflog'
 alias gfa='git fetch --all'
-
+# alias git='hub'
 
 # leverage an alias from the ~/.gitconfig
 alias gh='git hist'
@@ -116,26 +146,22 @@ alias glg1='git lg1'
 alias glg2='git lg2'
 alias glg='git lg'
 
-
 # -------------------------------------------------------------------
 # Capistrano aliases
 # -------------------------------------------------------------------
 
 alias capd='cap deploy'
 
-
 # -------------------------------------------------------------------
 # Symfony aliases
 # -------------------------------------------------------------------
-
-
 
 # -------------------------------------------------------------------
 # OTHER aliases
 # -------------------------------------------------------------------
 
 alias cl='clear'
-alias bi= 'bower install'
+alias bi= 'bundle install'
 alias bl= 'bower list'
 alias bs= 'bower search'
 alias npming='npm install -g'
@@ -147,14 +173,15 @@ alias whereami='display_info'
 alias javaide='open -a /Applications/IntelliJ\ IDEA.app'
 alias phpide='open -a /Applications/PHPStorm.app'
 alias atom='open -a /Applications/Atom.app'
-alias webide='open -a /Applications/WebStorm'
+alias code='open -a /Applications/Visual\ Studio\ Code.app'
+alias webide='open -a /Applications/WebStorm.app'
 alias apmi='apm install'
 alias hypin="hpm install"
 alias brewi='brew install'
 alias brupg='brew upgrade'
 alias brupd='brew update'
 alias szsh='source ~/.zshrc'
-alias srg='surge _site/'
+alias srg='surge'
 alias jb='jekyll build'
 alias netd='netlify deploy'
 alias git_up='git standup'
@@ -163,11 +190,468 @@ alias getup='git fetch upstream'
 alias chkmast='git checkout master'
 alias mergethatshit='git merge upstream/master'
 alias gst='git stash'
-alias gsta='git stash apply'
+alias gitsta='git stash apply'
+alias ohshit='git revert --no commit'
 alias hero='git push heroku master'
 alias takecare='tiny-care-terminal'
 alias bsync='browser-sync start --server'
 alias breload='browser-sync reload'
-alias jopt='jpeg-recompress --accurate --quality high'
+alias jopt='jpeg-recompress --accurate --quality medium --min 40'
 alias popt='pngcrush -brute'
 alias jeks='jekyll serve'
+alias gitor='git remote add origin'
+alias pushit='git push -u origin master'
+alias moncheck='mongod --dbpath /Users/tiffanywhite/Desktop/Git_Repositories/checkyoself/data/db'
+alias monyelp='mongod --dbpath /Users/tiffanywhite/Desktop/Git_Repositories/YelpCamp/data/db'
+alias free='git pull --rebase upstream staging'
+alias slate='./deploy.sh'
+alias start='torus run bin/rails server'
+alias console='torus run bin/rails console'
+alias killpry='lsof -wni tcp:3000'
+alias git=hub
+alias lint='./node_modules/.bin/eslint --init'
+
+# push my changes to my github master branch and open the page
+# The commit message will always be "push from terminal" since I'll probably just be adding more resources or checking things off when using this
+alias pg-gh='cd ~/Desktop/Git_Repositories/personal-goals &&
+  git add -A &&
+  git commit -m "updates goals" &&
+  git push &&
+  open http://github.com/twhite96/personal-goals'
+# exa file list
+alias la="exa -abghl --git --color=automatic"
+# `cat` with beautiful colors. requires: pip install -U Pygments
+alias c='pygmentize -O style=borland -f console256 -g'
+
+alias myip='curl ip.appspot.com'
+#   memHogsTop, memHogsPs:  Find memory hogs
+#   -----------------------------------------------------
+alias memHogsTop='top -l 1 -o rsize | head -20'
+alias memHogsPs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
+
+#   cpuHogs:  Find CPU hogs
+#   -----------------------------------------------------
+alias cpu_hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
+alias flushDNS='dscacheutil -flushcache'
+
+#   finderShowHidden:   Show hidden files in Finder
+#   finderHideHidden:   Hide hidden files in Finder
+#   -------------------------------------------------------------------
+alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
+alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+
+###################
+# BUILDING PROMPT #
+###################
+
+# username --> %n
+# machine name --> %m
+# current location --> %~
+
+# Main prompt (left)
+# PROMPT='╭─$(nvm_prompt_info) $fg[magenta]$(get_pwd)%b
+# ╰───$_SYMBOL'
+
+# Main prompt (right)
+# RPROMPT='$(check_git_prompt_info)'
+
+##############
+# EMOJI BITS #
+##############
+
+# Get more options: 
+# http://getemoji.com/ 
+# https://unicode.org/emoji/charts/full-emoji-list.html
+# Ctrl + Cmd + Space on Mac to open up the emoji keyboard
+EMOJI=(💩 👻 💀 ☠ 👽 👾 🤖 🐶 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐒 🦉 🦄 🐌 🐢 🦑 🐙 🐠 🐟 🐡 🐬 🦈 🐳 🐄 🐘 🍄 🌻 ☃️ ⛄️ ❄️ 🔥 🍌 🍍 🍓 🥝 🍭 🎨 🚀 🏖 🏝 💻 📚 🖌 🖍 📓 😜 🙄 🤓 👩🏻‍💻 👩🏻‍🚀 👸🏼 💃 🛀🏻 🤺 🖕🏻 ✌🏻 🤘🏻 👊🏻 👟 🎩 🐥 🦆 )
+function random_emoji {
+  echo -n "$EMOJI[$RANDOM%$#EMOJI+1] "
+}
+
+
+# ➭ ✔ ✈ ✭ ✗ ➦ ✂ ✱
+# Prompt symbols
+# _SYMBOL="%{$fg[red]%}➭%{$fg[yellow]%}➭%{$fg[cyan]%}➭ "
+_SYMBOL="<< $(random_emoji) >> "
+
+
+
+######################
+# Git Prompt Builder #
+######################
+
+# ZSH_THEME_GIT_PROMPT_PREFIX="["
+# ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%}]"
+# ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%} ✗"
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✔"
+
+
+
+# Git sometimes goes into a detached head state. git_prompt_info doesn't
+# return anything in this case. So wrap it in another function and check
+# for an empty string.
+# function check_git_prompt_info() {
+#     if git rev-parse --git-dir > /dev/null 2>&1; then
+#         if [[ -z $(git_prompt_info) ]]; then
+#             echo "%{$fg[magenta]%}detached-head%{$reset_color%})"
+#         else
+#             echo "$(git_prompt_info)"
+#         fi
+#     fi
+# }
+
+
+######################
+# NVM Prompt Builder #
+######################
+
+# ZSH_THEME_NVM_PROMPT_PREFIX="%{$fg[green]%}⬡ %{$fg[white]%}"
+# ZSH_THEME_NVM_PROMPT_SUFFIX="%{$fg[white]%}"
+
+
+########################
+# Location Path Setter #
+########################
+
+# function get_pwd(){
+#   git_root=$PWD
+#   while [[ $git_root != / && ! -e $git_root/.git ]]; do
+#     git_root=$git_root:h
+#   done
+#   if [[ $git_root = / ]]; then
+#     unset git_root
+#     prompt_short_dir=%~
+#   else
+#     parent=${git_root%\/*}
+#     prompt_short_dir=${PWD#$parent/}
+#   fi
+#   echo $prompt_short_dir
+# }
+
+
+
+#   extract:  Extract most know archives with one command
+#   ---------------------------------------------------------
+    extract () {
+        if [ -f $1 ] ; then
+          case $1 in
+            *.tar.bz2)   tar xjf $1     ;;
+            *.tar.gz)    tar xzf $1     ;;
+            *.bz2)       bunzip2 $1     ;;
+            *.rar)       unrar e $1     ;;
+            *.gz)        gunzip $1      ;;
+            *.tar)       tar xf $1      ;;
+            *.tbz2)      tar xjf $1     ;;
+            *.tgz)       tar xzf $1     ;;
+            *.zip)       unzip $1       ;;
+            *.Z)         uncompress $1  ;;
+            *.7z)        7z x $1        ;;
+            *)     echo "'$1' cannot be extracted via extract()" ;;
+             esac
+         else
+             echo "'$1' is not a valid file"
+         fi
+    }
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+source /Users/tiffanywhite/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Angular CLI fix
+
+# EDITOR=visual\ studio\ code; export EDITOR
+
+eval "$(hub alias -s)"
+export GITHUB_TOKEN=$token
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+# echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc
+#
+
+# export CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include"
+# export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib"
+
+# export RBENV_ROOT=/usr/local/var/rbenv
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+
+# export PATH="$HOME/.rbenv/bin:$PATH"
+# eval "$(rbenv init -)"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/openssl/bin:$PATH"
+echo -e "\033]6;1;bg;red;brightness;23\a"
+echo -e "\033]6;1;bg;green;brightness;52\a"
+echo -e "\033]6;1;bg;blue;brightness;72\a"
