@@ -10,6 +10,14 @@ ZSH_THEME="cobalt2"
 . ~/z.sh
 
 
+# Apps
+
+alias ci="code-insiders"
+alias chrome='/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome'
+alias canary='/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary'
+
+# Kill Chrome because it gets stuck sometimes
+alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v extension-process | tr -s ' ' | cut -d ' ' -f2 | xargs kill"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
@@ -88,8 +96,6 @@ export TTC_APIKEYS=true
 
 # Refresh the dashboard every 20 minutes.
 export TTC_UPDATE_INTERVAL=10
-
-# Twitter api keys
 
 
 # Note: in tiny-terminal-care < 1.0.7, the recommended variables for the Twitter
@@ -170,9 +176,9 @@ alias npms='npm search'
 alias h='history'
 alias help='man'
 alias whereami='display_info'
-alias javaide='open -a /Applications/IntelliJ\ IDEA.app'
-alias phpide='open -a /Applications/PHPStorm.app'
-alias atom='open -a /Applications/Atom.app'
+# alias javaide='open -a /Applications/IntelliJ\ IDEA.app'
+# alias phpide='open -a /Applications/PHPStorm.app'
+# alias atom='open -a /Applications/Atom.app'
 alias code='open -a /Applications/Visual\ Studio\ Code.app'
 alias webide='open -a /Applications/WebStorm.app'
 alias apmi='apm install'
@@ -198,7 +204,9 @@ alias bsync='browser-sync start --server'
 alias breload='browser-sync reload'
 alias jopt='jpeg-recompress --accurate --quality medium --min 40'
 alias popt='pngcrush -brute'
-alias jeks='jekyll serve'
+alias jekstw='bundle exec jekyll serve --host 0.0.0.0'
+alias jeksth='bundle exec jekyll serve --port 4001 --host 0.0.0.0'
+alias jeksd='bundle exec jekyll serve --port 4002 --host 0.0.0.0'
 alias gitor='git remote add origin'
 alias pushit='git push -u origin master'
 alias moncheck='mongod --dbpath /Users/tiffanywhite/Desktop/Git_Repositories/checkyoself/data/db'
@@ -210,6 +218,9 @@ alias console='torus run bin/rails console'
 alias killpry='lsof -wni tcp:3000'
 alias git=hub
 alias lint='./node_modules/.bin/eslint --init'
+alias gac="ga . && gcmsg"
+alias gpo="gp && go"
+alias gundo="git undo"
 
 # push my changes to my github master branch and open the page
 # The commit message will always be "push from terminal" since I'll probably just be adding more resources or checking things off when using this
@@ -234,11 +245,26 @@ alias memHogsPs='ps wwaxm -o pid,stat,vsize,rss,time,command | head -10'
 alias cpu_hogs='ps wwaxr -o pid,stat,%cpu,time,command | head -10'
 alias flushDNS='dscacheutil -flushcache'
 
+# Reload dns
+alias reloaddns="dscacheutil -flushcache && sudo killall -HUP mDNSResponder"
+
+# Empty the Trash on all mounted volumes and the main HDD.
+# Also, clear Apple’s System Logs to improve shell startup speed.
+# Finally, clear download history from quarantine. https://mths.be/bum
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl; sqlite3 ~/Library/Preferences/com.apple.LaunchServices.QuarantineEventsV* 'delete from LSQuarantineEvent'"
+
+
 #   finderShowHidden:   Show hidden files in Finder
 #   finderHideHidden:   Hide hidden files in Finder
 #   -------------------------------------------------------------------
 alias finderShowHidden='defaults write com.apple.finder ShowAllFiles TRUE'
 alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
+
+alias l="exa -l"
+alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
+alias alz="alias | fzf"
+
+
 
 ###################
 # BUILDING PROMPT #
@@ -259,20 +285,21 @@ alias finderHideHidden='defaults write com.apple.finder ShowAllFiles FALSE'
 # EMOJI BITS #
 ##############
 
-# Get more options:
-# http://getemoji.com/
+# Get more options: 
+# http://getemoji.com/ 
 # https://unicode.org/emoji/charts/full-emoji-list.html
 # Ctrl + Cmd + Space on Mac to open up the emoji keyboard
-EMOJI=(💩 👻 💀 ☠ 👽 👾 🤖 🐶 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐒 🦉 🦄 🐌 🐢 🦑 🐙 🐠 🐟 🐡 🐬 🦈 🐳 🐄 🐘 🍄 🌻 ☃️ ⛄️ ❄️ 🔥 🍌 🍍 🍓 🥝 🍭 🎨 🚀 🏖 🏝 💻 📚 🖌 🖍 📓 😜 🙄 🤓 👩🏻‍💻 👩🏻‍🚀 👸🏼 💃 🛀🏻 🤺 🖕🏻 ✌🏻 🤘🏻 👊🏻 👟 🎩 🐥 🦆 )
-function random_emoji {
-  echo -n "$EMOJI[$RANDOM%$#EMOJI+1] "
-}
+# EMOJI=(💩 👻 💀 ☠ 👽 👾 🤖 🐶 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐒 🦉 🦄 🐌 🐢 🦑 🐙 🐠 🐟 🐡 🐬 🦈 🐳 🐄 🐘 🍄 🌻 ☃️ ⛄️ ❄️ 🔥 🍌 🍍 🍓 🥝 🍭 🎨 🚀 🏖 🏝 💻 📚 🖌 🖍 📓 😜 🙄 🤓 👩🏻‍💻 👩🏻‍🚀 👸🏼 💃 🛀🏻 🤺 🖕🏻 ✌🏻 🤘🏻 👊🏻 👟 🎩 🐥 🦆 )
+# function random_emoji {
+#   echo -n "$EMOJI[$RANDOM%$#EMOJI+1] "
+# }
 
 
-# ➭ ✔ ✈ ✭ ✗ ➦ ✂ ✱
+
 # Prompt symbols
+# ➭ ✔ ✈ ✭ ✗ ➦ ✂ ✱
 # _SYMBOL="%{$fg[red]%}➭%{$fg[yellow]%}➭%{$fg[cyan]%}➭ "
-_SYMBOL="<< $(random_emoji) >> "
+# _SYMBOL="<< $(random_emoji) >> "
 
 
 
@@ -280,25 +307,25 @@ _SYMBOL="<< $(random_emoji) >> "
 # Git Prompt Builder #
 ######################
 
-ZSH_THEME_GIT_PROMPT_PREFIX="["
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%}]"
-ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%} ✗"
-ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✔"
+# ZSH_THEME_GIT_PROMPT_PREFIX="["
+# ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%}]"
+# ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[red]%} ✗"
+# ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ✔"
 
 
 
 # Git sometimes goes into a detached head state. git_prompt_info doesn't
 # return anything in this case. So wrap it in another function and check
 # for an empty string.
-function check_git_prompt_info() {
-    if git rev-parse --git-dir > /dev/null 2>&1; then
-        if [[ -z $(git_prompt_info) ]]; then
-            echo "%{$fg[magenta]%}detached-head%{$reset_color%})"
-        else
-            echo "$(git_prompt_info)"
-        fi
-    fi
-}
+# function check_git_prompt_info() {
+#   if git rev-parse --git-dir > /dev/null 2>&1; then
+#       if [[ -z $(git_prompt_info) ]]; then
+#           echo "%{$fg[magenta]%}detached-head%{$reset_color%})"
+#       else
+#           echo "$(git_prompt_info)"
+#       fi
+#   fi
+# }
 
 
 ######################
@@ -327,7 +354,6 @@ ZSH_THEME_NVM_PROMPT_SUFFIX="%{$fg[white]%}"
 #   fi
 #   echo $prompt_short_dir
 # }
-
 
 
 #   extract:  Extract most know archives with one command
@@ -360,7 +386,7 @@ source /Users/tiffanywhite/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Angular CLI fix
 
-# EDITOR=visual\ studio\ code; export EDITOR
+EDITOR=Code; export EDITOR
 
 eval "$(hub alias -s)"
 export GITHUB_TOKEN=$token
@@ -374,6 +400,7 @@ export GITHUB_TOKEN=$token
 
 # export RBENV_ROOT=/usr/local/var/rbenv
 # if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
 echo -e "\033]6;1;bg;red;brightness;23\a"
 echo -e "\033]6;1;bg;green;brightness;52\a"
 echo -e "\033]6;1;bg;blue;brightness;72\a"
