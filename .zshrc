@@ -3,8 +3,59 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
+ZSH_THEME="spaceship"
+# SPACESHIP_PROMPT_DEFAULT_PREFIX="\ue7ba"
+SPACESHIP_PROMPT_ADD_NEWLINE="true"
+SPACESHIP_CHAR_SYMBOL="\uf0e7"
+SPACESHIP_CHAR_PREFIX="\uf025 "
+SPACESHIP_CHAR_SUFFIX=" "
+SPACESHIP_CHAR_COLOR_SUCCESS=yellow
+SPACESHIP_PROMPT_DEFAULT_PREFIX="$USER"
+SPACESHIP_PROMPT_FIRST_PREFIX_SHOW="true"
+SPACESHIP_USER_SHOW="true"
 
-ZSH_THEME="cobalt2"
+# NODE
+SPACESHIP_NODE_PREFIX="node:("
+SPACESHIP_NODE_SUFFIX=") "
+SPACESHIP_NODE_SYMBOL="\uf898 "
+
+# RUBY
+SPACESHIP_RUBY_PREFIX="ruby:("
+SPACESHIP_RUBY_SUFFIX=") "
+SPACESHIP_RUBY_SYMBOL="\ue791 "
+
+# GIT
+# Disable git symbol
+SPACESHIP_GIT_SYMBOL="\ue70a" # disable git prefix
+# SPACESHIP_GIT_BRANCH_PREFIX="\ue702" # disable branch prefix too
+# Wrap git in `git:(...)`
+SPACESHIP_GIT_PREFIX='git:('
+SPACESHIP_GIT_SUFFIX=") "
+SPACESHIP_GIT_BRANCH_SUFFIX=" " # remove space after branch name
+# Unwrap git status from `[...]`
+SPACESHIP_GIT_STATUS_PREFIX="\ufbd9 "
+SPACESHIP_GIT_STATUS_SUFFIX=""
+
+# SWIFT
+SPACESHIP_SWIFT_PREFIX="swift:("
+SPACESHIP_SWIFT_SUFFIX=") "
+SPACESHIP_SWIFT_SYMBOL="\ufbe3 "
+
+# GOLANG
+SPACESHIP_GOLANG_PREFIX="go:("
+SPACESHIP_GOLANG_SUFFIX=") "
+SPACESHIP_GOLANG_SYMBOL="\ue724 "
+
+# DOCKER
+SPACESHIP_DOCKER_PREFIX="docker("
+SPACESHIP_DOCKER_SUFFIX=") "
+SPACESHIP_DOCKER_SYMBOL="\uf308 "
+
+# PYENV
+SPACESHIP_PYENV_PREFIX="python:("
+SPACESHIP_PYENV_SUFFIX=") "
+SPACESHIP_PYENV_SYMBOL="\ue73c "
+
 
 # Z jump
 . ~/z.sh
@@ -41,10 +92,9 @@ COMPLETION_WAITING_DOTS="true"
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
-plugins=(git dirhistory brew dircycle gitfast git-extras jsontools node npm osx repo sudo urltools web-search dirpersist history-substring-search last-working-dir safe-paste yarn)
+plugins=(git dirhistory brew dircycle gitfast git-extras jsontools node npm osx repo sudo urltools web-search dirpersist history-substring-search last-working-dir safe-paste yarn zsh-completions)
 
 source $ZSH/oh-my-zsh.sh
-
 # Timing
 PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 export PROMPT_COMMAND="${PROMPT_COMMAND} ${PROMPT_TITLE}; "
@@ -111,9 +161,9 @@ export TTC_UPDATE_INTERVAL=10
  # Go Paths
  # ------------------------------------------------------------------
 
-export GOROOT=$HOME/golang/go
+export GOROOT=$HOME/golang
 export PATH=$PATH:$GOROOT/bin
-export GOPATH=$HOME/Desktop/Git_Repositories
+# export GOPATH=$HOME/Desktop/Git_Repositories
 
 #--------------------------------------------------------------------
 # Ruby Path fixes
@@ -165,7 +215,7 @@ alias capd='cap deploy'
 # -------------------------------------------------------------------
 # OTHER aliases
 # -------------------------------------------------------------------
-
+# alias python=/usr/local/bin/python3
 alias cl='clear'
 alias bi= 'bundle install'
 alias bl= 'bower list'
@@ -176,6 +226,7 @@ alias npms='npm search'
 alias h='history'
 alias help='man'
 alias whereami='display_info'
+alias did="vim +'normal Go' +'r!date' ~/did.txt"
 # alias javaide='open -a /Applications/IntelliJ\ IDEA.app'
 # alias phpide='open -a /Applications/PHPStorm.app'
 # alias atom='open -a /Applications/Atom.app'
@@ -211,17 +262,24 @@ alias gitor='git remote add origin'
 alias pushit='git push -u origin master'
 alias moncheck='mongod --dbpath /Users/tiffanywhite/Desktop/Git_Repositories/checkyoself/data/db'
 alias monyelp='mongod --dbpath /Users/tiffanywhite/Desktop/Git_Repositories/YelpCamp/data/db'
-alias free='git pull --rebase upstream staging'
+alias free='git pull --rebase upstream master'
 alias slate='./deploy.sh'
+alias bug='git pull upstream master'
 alias start='torus run bin/rails server'
 alias console='torus run bin/rails console'
 alias killpry='lsof -wni tcp:3000'
+alias gdev='gatsby develop --port 8000 --host 0.0.0.0'
+alias bdev='gatsby develop --port 8001 --host 0.0.0.0'
 alias git=hub
 alias lint='./node_modules/.bin/eslint --init'
 alias gac="ga . && gcmsg"
 alias gpo="gp && go"
 alias gundo="git undo"
-
+alias docs="GIT_USER=twhite96 CURRENT_BRANCH=source yarn run publish-gh-pages"
+alias algolia="ALGOLIA_API_KEY='3cc8784843848f7fc60ac25281f87ecb' bundle exec jekyll algolia"
+source $(dirname $(gem which colorls))/tab_complete.sh
+alias ls='colorls --dark --sort-dirs --report -A --gs'
+alias lc='colorls --tree --dark -A'
 # push my changes to my github master branch and open the page
 # The commit message will always be "push from terminal" since I'll probably just be adding more resources or checking things off when using this
 alias pg-gh='cd ~/Desktop/Git_Repositories/personal-goals &&
@@ -230,7 +288,7 @@ alias pg-gh='cd ~/Desktop/Git_Repositories/personal-goals &&
   git push &&
   open http://github.com/twhite96/personal-goals'
 # exa file list
-alias la="exa -abghl --git --color=automatic"
+alias la="exa --git --color=automatic -x"
 # `cat` with beautiful colors. requires: pip install -U Pygments
 alias c='pygmentize -O style=borland -f console256 -g'
 
@@ -265,6 +323,17 @@ alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
 alias alz="alias | fzf"
 
 
+########################
+# Terminalizer Aliases #
+########################
+
+alias trex='terminalizer record'
+alias tconfig='terminalizer config'
+alias tren='terminalizer render'
+alias tplay='terminalizer play'
+alias tgen='terminalizer generate'
+alias tshare='terminalizer share'
+
 
 ###################
 # BUILDING PROMPT #
@@ -281,12 +350,12 @@ alias alz="alias | fzf"
 # Main prompt (right)
 # RPROMPT='$(check_git_prompt_info)'
 
-##############
+# #############
 # EMOJI BITS #
-##############
+# #############
 
-# Get more options: 
-# http://getemoji.com/ 
+# Get more options:
+# http://getemoji.com/
 # https://unicode.org/emoji/charts/full-emoji-list.html
 # Ctrl + Cmd + Space on Mac to open up the emoji keyboard
 # EMOJI=(💩 👻 💀 ☠ 👽 👾 🤖 🐶 🦊 🐻 🐼 🐨 🐯 🦁 🐮 🐷 🐒 🦉 🦄 🐌 🐢 🦑 🐙 🐠 🐟 🐡 🐬 🦈 🐳 🐄 🐘 🍄 🌻 ☃️ ⛄️ ❄️ 🔥 🍌 🍍 🍓 🥝 🍭 🎨 🚀 🏖 🏝 💻 📚 🖌 🖍 📓 😜 🙄 🤓 👩🏻‍💻 👩🏻‍🚀 👸🏼 💃 🛀🏻 🤺 🖕🏻 ✌🏻 🤘🏻 👊🏻 👟 🎩 🐥 🦆 )
@@ -294,7 +363,7 @@ alias alz="alias | fzf"
 #   echo -n "$EMOJI[$RANDOM%$#EMOJI+1] "
 # }
 
-
+fpath=(/usr/local/share/zsh-completions $fpath)
 
 # Prompt symbols
 # ➭ ✔ ✈ ✭ ✗ ➦ ✂ ✱
@@ -303,9 +372,9 @@ alias alz="alias | fzf"
 
 
 
-######################
+# #####################
 # Git Prompt Builder #
-######################
+# #####################
 
 # ZSH_THEME_GIT_PROMPT_PREFIX="["
 # ZSH_THEME_GIT_PROMPT_SUFFIX="%{$fg[white]%}]"
@@ -332,8 +401,8 @@ alias alz="alias | fzf"
 # NVM Prompt Builder #
 ######################
 
-ZSH_THEME_NVM_PROMPT_PREFIX="%{$fg[green]%}⬡ %{$fg[white]%}"
-ZSH_THEME_NVM_PROMPT_SUFFIX="%{$fg[white]%}"
+# ZSH_THEME_NVM_PROMPT_PREFIX="%{$fg[green]%}⬡ %{$fg[white]%}"
+# ZSH_THEME_NVM_PROMPT_SUFFIX="%{$fg[white]%}"
 
 
 ########################
@@ -355,6 +424,11 @@ ZSH_THEME_NVM_PROMPT_SUFFIX="%{$fg[white]%}"
 #   echo $prompt_short_dir
 # }
 
+function acp() {
+  git add .
+  git commit -m "Update something"
+  git push
+}
 
 #   extract:  Extract most know archives with one command
 #   ---------------------------------------------------------
@@ -392,15 +466,83 @@ eval "$(hub alias -s)"
 export GITHUB_TOKEN=$token
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-# echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc
-#
+echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc
 
-# export CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include"
-# export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib"
 
-# export RBENV_ROOT=/usr/local/var/rbenv
-# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+export CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include"
+export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib"
 
-echo -e "\033]6;1;bg;red;brightness;23\a"
-echo -e "\033]6;1;bg;green;brightness;52\a"
-echo -e "\033]6;1;bg;blue;brightness;72\a"
+export RBENV_ROOT=/usr/local/var/rbenv
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# echo -e "\033]6;1;bg;red;brightness;23\a"
+# echo -e "\033]6;1;bg;green;brightness;52\a"
+# echo -e "\033]6;1;bg;blue;brightness;72\a"
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
+export PATH="/usr/local/opt/openssl/bin:$PATH"
