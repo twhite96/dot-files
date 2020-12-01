@@ -1,86 +1,114 @@
 {
-  "files.associations": {
-    "*.js": "javascriptreact"
-  },
-  "git.ignoreLimitWarning": true,
-  "prettier.requireConfig": false,
-  "prettier.tabWidth": 2,
-  "prettier.singleQuote": true,
-  "prettier.jsxSingleQuote": true,
-  "prettier.printWidth": 120,
-  "prettier.trailingComma": "none",
-  "files.autoSave": "off",
-  "prettier.bracketSpacing": true,
-  "prettier.jsxBracketSameLine": true,
-  "peacock.favoriteColors": [
-    {
-        "name": "Angular Red",
-        "value": "#b52e31"
+    "sync.gist": "30329066849410d1c590896621bd0300",
+    "atomKeymap.promptV3Features": true,
+    "editor.fontFamily": "Operator Mono Lig",
+    "editor.tabSize": 2,
+    "terminal.external.osxExec": "iTerm.app",
+    "terminal.integrated.cursorBlinking": true,
+    "terminal.integrated.enableBold": true,
+    "terminal.integrated.fontFamily": "Hack Nerd Font Mono",
+    "terminal.integrated.fontSize": 18,
+    "terminal.integrated.rightClickCopyPaste": true,
+    "editor.renderIndentGuides": false,
+    "editor.fontSize": 20,
+    "editor.fontLigatures": true,
+    "sync.quietSync": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "window.newWindowDimensions": "maximized",
+    "git.allowForcePush": true,
+    "files.associations": {
+        "*.js": "javascriptreact"
     },
-    {
-        "name": "Auth0 Orange",
-        "value": "#eb5424"
+    "emmet.includeLanguages": {
+        "javascript": "javascriptreact"
     },
-    {
-        "name": "Azure Blue",
-        "value": "#007fff"
-    },
-    {
-        "name": "Gatsby Purple",
-        "value": "#639"
-    },
-    {
-        "name": "JavaScript Yellow",
-        "value": "#f9e64f"
-    },
-    {
-        "name": "Mandalorian Blue",
-        "value": "#1857a4"
-    },
-    {
-        "name": "Node Green",
-        "value": "#215732"
-    },
-    {
-        "name": "React Blue",
-        "value": "#00b3e6"
-    },
-    {
-        "name": "Something Different",
-        "value": "#832561"
-    },
-    {
-        "name": "Vue Green",
-        "value": "#42b883"
-    },
-    {
-        "name": "Instagram Pink",
-        "value": "#e1306c"
-    },
-    {
-        "name": "That Mac Nerd Red",
-        "value": "#DF1A28"
-    },
-    {
-        "name": "TRW Blog Blue",
-        "value": "#06D7D9"
-    }
-  ],
-  "peacock.affectStatusBar": true,
-"peacock.affectActivityBar": true,
-"workbench.colorCustomizations": {
-    "activityBar.background": "#19f7f9",
-    "activityBar.foreground": "#15202b",
-    "activityBar.inactiveForeground": "#15202b99",
-    "activityBarBadge.background": "#fa45f9",
-    "activityBarBadge.foreground": "#15202b",
-    "titleBar.activeBackground": "#06d7d9",
-    "titleBar.inactiveBackground": "#06d7d999",
-    "titleBar.activeForeground": "#15202b",
-    "titleBar.inactiveForeground": "#15202b99",
-    "statusBar.background": "#06d7d9",
-    "statusBarItem.hoverBackground": "#05a6a7",
-    "statusBar.foreground": "#15202b"
-},
-}
+    "editor.multiCursorModifier": "ctrlCmd",
+    "peacock.favoriteColors": [
 
+        {
+            "name": "Angular Red",
+            "value": "#dd0531"
+        },
+        {
+            "name": "Azure Blue",
+            "value": "#007fff"
+        },
+        {
+            "name": "JavaScript Yellow",
+            "value": "#f9e64f"
+        },
+        {
+            "name": "Mandalorian Blue",
+            "value": "#1857a4"
+        },
+        {
+            "name": "Node Green",
+            "value": "#215732"
+        },
+        {
+            "name": "React Blue",
+            "value": "#61dafb"
+        },
+        {
+            "name": "Something Different",
+            "value": "#832561"
+        },
+        {
+            "name": "Svelte Orange",
+            "value": "#ff3d00"
+        },
+        {
+            "name": "Vue Green",
+            "value": "#42b883"
+        },
+        {
+            "name": "TWBlog",
+            "value": "#06D7D9"
+        },
+        {
+            "name": "tiffany.blog",
+            "value": "#e60023"
+        },
+        {
+            "name": "dfl",
+            "value": "#b300b3"
+        }
+    ],
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    },
+    "emmet.triggerExpansionOnTab": true,
+    "window.zoomLevel": 1,
+"[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"javascript.updateImportsOnFileMove.enabled": "always",
+"workbench.colorTheme": "Moonlight Italic",
+"workbench.startupEditor": "welcomePageInEmptyWorkbench",
+"workbench.colorCustomizations": {
+"[DVLPR]": {
+  "editor.background": "#090d3a",
+  "sideBar.background": "#090d3a",
+  "sideBarSectionHeader.background": "#090d3a",
+  "editorGroup.emptyBackground": "#090d3a",
+  "tab.activeBackground": "#272c63",
+  "tab.activeBorder": "#e4467b",
+  "editorGroupHeader.tabsBackground": "#090d3a",
+  "editorGroupHeader.border": "#090d3a",
+  "tab.inactiveBackground": "#090d3a"
+ }
+},
+"editor.semanticTokenColorCustomizations": {
+    "enabled": true
+},
+"window.restoreFullscreen": true,
+"[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+},
+"vscode_custom_css.imports": [
+    "file:///Users/tiffanywhite/moonlight.css"
+],
+"terminal.integrated.experimentalLinkProvider": false,
+"terminal.integrated.shell.osx": "/bin/zsh"
+    
+}

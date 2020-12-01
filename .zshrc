@@ -3,7 +3,7 @@ ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="spaceship"
+ZSH_THEME=""
 # SPACESHIP_PROMPT_DEFAULT_PREFIX="\ue7ba"
 SPACESHIP_PROMPT_ADD_NEWLINE="true"
 SPACESHIP_CHAR_SYMBOL="\uf0e7"
@@ -26,7 +26,7 @@ SPACESHIP_RUBY_SYMBOL="\ue791 "
 
 # GIT
 # Disable git symbol
-SPACESHIP_GIT_SYMBOL="\ue70a" # disable git prefix
+SPACESHIP_GIT_SYMBOL="\ue70a " # disable git prefix
 # SPACESHIP_GIT_BRANCH_PREFIX="\ue702" # disable branch prefix too
 # Wrap git in `git:(...)`
 SPACESHIP_GIT_PREFIX='git:('
@@ -61,6 +61,18 @@ SPACESHIP_PYENV_SYMBOL="\ue73c "
 . ~/z.sh
 
 
+# setopt AUTO_NAME_DIRS
+# setopt CDABLE_VARS
+# TWBlog=/Volumes/Working\ Drive/Git_Repositories/TWBlog
+# checkyoself=/Volumes/Working\ Drive/Git_Repositories/checkyoself
+# checkyoself-docs=/Volumes/Working\ Drive/Git_Repositories/checkyoselfDocs
+# dev-research=/Volumes/Working\ Drive/Git_Repositories/devResearch
+# book-finder=/Volumes/Working\ Drive/Git_Repositories/bookFinder
+# portfolio-v6=/Volumes/Working\ Drive/Git_Repositories/portfoliov6
+# tiffany.blog=/Volumes/Working\ Drive/Git_Repositories/tiffanyBlog
+
+# resume=/Volumes/Working\ Drive/Git_Repositories/resume
+
 # Apps
 
 alias ci="code-insiders"
@@ -78,7 +90,7 @@ alias chromekill="ps ux | grep '[C]hrome Helper --type=renderer' | grep -v exten
 # CASE_SENSITIVE="true"
 
 # Comment this out to disable weekly auto-update checks
-DISABLE_AUTO_UPDATE="false"
+DISABLE_AUTO_UPDATE=false
 
 # Uncomment following line if you want to disable colors in ls
   DISABLE_LS_COLORS="true"
@@ -130,23 +142,28 @@ export TTC_GITBOT='gitlog'
 export TTC_SAY_BOX='parrot'
 
 # List of folders to look into for `git` commits, comma separated.
-export TTC_REPOS='~/Desktop/Git_Repositories/checkyoself,~/Desktop/Git_Repositories/React-Redux-Udemy,~/Desktop/Git_Repositories/add-to-goodreads,~/Desktop/Git_Repositories/Weather_App,~/Desktop/Git_Repositories/resume,~/Desktop/Git_Repositories/portfolio,~/Desktop/Git_Repositories/freeCodeCamp,~/Desktop/Git_Repositories/YelpCamp,~/Desktop/Git_Repositories/my-first-ng-app,~/Desktop/Git_Repositories/React-Redux-Udemy,~/Desktop/Git_Repositories/Random Quote Generator,~/Desktop/Git_Repositories/dev.to_private,~/Desktop/Git_Repositories/ruby-practice,~/Desktop/Git_Repositories/blog,~/Desktop/Git_Repositories/tui.editor,~/Desktop/Git_Repositories/wes-bos-es6,~/Desktop/Git_Repositories/front_end_interview_flashcards,~/Desktop/Git_Repositories/wikipedia-viewer,~/Desktop/Git_Repositories/dev-landing-page,~/Desktop/Git_Repositories/React-For-Beginners-Starter-Files-master/catch-of-the-day,~/Desktop/Git_Repositories/various-algorithms'
+export TTC_REPOS='/Users/tiffanywhite/Desktop/Git_Repositories/checkyoself,/Users/tiffanywhite/Desktop/Git_Repositories/resume,/Users/tiffanywhite/Desktop/Git_Repositories/portfolio-v5,/Users/tiffanywhite/Desktop/Git_Repositories/freeCodeCamp,/Users/tiffanywhite/Desktop/Git_Repositories/gatsby,/Users/tiffanywhite/Desktop/Git_Repositories/write-good-component,/Users/tiffanywhite/Desktop/Git_Repositories/dev.to,/Users/tiffanywhite/Desktop/Git_Repositories/TWBlog,/Users/tiffanywhite/Desktop/Git_Repositories/new-post-gatsby-starter-blog,/Users/tiffanywhite/Desktop/Git_Repositories/wikipedia-viewer,/Users/tiffanywhite/Desktop/Git_Repositories/various-algorithms,/Users/tiffanywhite/Desktop/Git_Repositories/js-dev-reads,/Users/tiffanywhite/Desktop/Git_Repositories/cs-math-for-web-devs,/Users/tiffanywhite/Desktop/Git_Repositories/react-bootcamp,/Users/tiffanywhite/Desktop/Git_Repositories/gatsby-bootcamp,/Users/tiffanywhite/Desktop/Git_Repositories/book-finder,/Users/tiffanywhite/Desktop/Git_Repositories/codesandbox-client,/Users/tiffanywhite/Desktop/Git_Repositories/its-your-canvas,/Users/tiffanywhite/Desktop/Git_Repositories/json2csv-app,/Users/tiffanywhite/Desktop/Git_Repositories/boutique-iphone-lens-store'
 
 # Location/zip code to check the weather for. Both 90210 and "San Francisco, CA"
 # _should_ be ok (the zip code doesn't always work -- use a location
 # first, if you can). It's using weather.service.msn.com behind the curtains.
-export TTC_WEATHER='Pittsburgh'
+export TTC_WEATHER='Steelton, PA'
 
 # Set to false if you're an imperial savage. <3
 export TTC_CELSIUS=false
 
 # Unset this if you _don't_ want to use Twitter keys and want to
 # use web scraping instead.
-export TTC_APIKEYS=true
+export TTC_APIKEYS=false
 
 # Refresh the dashboard every 20 minutes.
 export TTC_UPDATE_INTERVAL=10
 
+ # ------------------------------------------------------------------
+ # nvm
+ # ------------------------------------------------------------------
+
+ # This loads nvm
 
 # Note: in tiny-terminal-care < 1.0.7, the recommended variables for the Twitter
 # API keys were the ones before. As of 1.0.8, they are deprecated
@@ -169,10 +186,16 @@ export PATH=$PATH:$GOROOT/bin
 # Ruby Path fixes
 #--------------------------------------------------------------------
 
-# export PATH=$(brew --prefix)/opt/openssl/bin:$PATH
-# export LDFLAGS=-L/usr/local/opt/openssl/lib
-# export CPPFLAGS=-I/usr/local/opt/openssl/include
-# export PKG_CONFIG_PATH=$(brew --prefix)/opt/openssl/lib/pkgconfig
+export PATH=$(brew --prefix)/opt/openssl/bin:$PATH
+export LDFLAGS=-L/usr/local/opt/openssl/lib
+export CPPFLAGS=-I/usr/local/opt/openssl/include
+export PKG_CONFIG_PATH=$(brew --prefix)/opt/openssl/lib/pkgconfig
+
+#--------------------------------------------------------------------
+# Mosh fix
+#--------------------------------------------------------------------
+
+export PATH=/usr/local/bin:$PATH
 
 # -------------------------------------------------------------------
 # Git aliases
@@ -197,7 +220,7 @@ alias gfa='git fetch --all'
 # alias git='hub'
 
 # leverage an alias from the ~/.gitconfig
-alias gh='git hist'
+# alias gh='git hist'
 alias glg1='git lg1'
 alias glg2='git lg2'
 alias glg='git lg'
@@ -221,7 +244,7 @@ alias bi= 'bundle install'
 alias bl= 'bower list'
 alias bs= 'bower search'
 alias npming='npm install -g'
-alias ying='yarn install -g'
+alias y='yarn'
 alias npms='npm search'
 alias h='history'
 alias help='man'
@@ -240,7 +263,8 @@ alias brupd='brew update'
 alias szsh='source ~/.zshrc'
 alias srg='surge'
 alias jb='jekyll build'
-alias netd='netlify deploy'
+# alias netd='netlify deploy'
+alias pushor="git push -u origin master"
 alias git_up='git standup'
 alias addup='git remote add upstream'
 alias getup='git fetch upstream'
@@ -255,13 +279,15 @@ alias bsync='browser-sync start --server'
 alias breload='browser-sync reload'
 alias jopt='jpeg-recompress --accurate --quality medium --min 40'
 alias popt='pngcrush -brute'
-alias jekstw='bundle exec jekyll serve --host 0.0.0.0'
-alias jeksth='bundle exec jekyll serve --port 4001 --host 0.0.0.0'
-alias jeksd='bundle exec jekyll serve --port 4002 --host 0.0.0.0'
+alias jeksth='bundle exec jekyll serve --livereload --open-url --port 4001 --drafts --future --host 0.0.0.0'
+alias jeksd='bundle exec jekyll serve --livereload --open-url --port 4000 --drafts --future --host 0.0.0.0'
+alias jeksttt='bundle exec jekyll serve --livereload --open-url --port 4002 --drafts --future --host 0.0.0.0'
+alias jeksg='bundle exec jekyll serve --livereload --open-url --port 4003 --drafts --future --host 0.0.0.0'
+alias jeksp='bundle exec jekyll serve --livereload --open-url --port 4004 --drafts --future --host 0.0.0.0'
+alias jeksfit='bundle exec jekyll serve --livereload --open-url --port 3040 --drafts --future --host 0.0.0.0'
+alias jeksb='bundle exec jekyll serve --livereload --open-url --port 3030 --drafts --future --host 0.0.0.0'
 alias gitor='git remote add origin'
 alias pushit='git push -u origin master'
-alias moncheck='mongod --dbpath /Users/tiffanywhite/Desktop/Git_Repositories/checkyoself/data/db'
-alias monyelp='mongod --dbpath /Users/tiffanywhite/Desktop/Git_Repositories/YelpCamp/data/db'
 alias free='git pull --rebase upstream master'
 alias slate='./deploy.sh'
 alias bug='git pull upstream master'
@@ -270,16 +296,46 @@ alias console='torus run bin/rails console'
 alias killpry='lsof -wni tcp:3000'
 alias gdev='gatsby develop --port 8000 --host 0.0.0.0'
 alias bdev='gatsby develop --port 8001 --host 0.0.0.0'
+alias phdev='gatsby develop --port 8002 --host 0.0.0.0'
+alias elecdev='gatsby develop --port 8003 --host 0.0.0.0'
+alias builddev='gatsby develop --port 8004 --host 0.0.0.0'
 alias git=hub
+alias pullup='git pull upstream master'
 alias lint='./node_modules/.bin/eslint --init'
 alias gac="ga . && gcmsg"
 alias gpo="gp && go"
 alias gundo="git undo"
-alias docs="GIT_USER=twhite96 CURRENT_BRANCH=source yarn run publish-gh-pages"
-alias algolia="ALGOLIA_API_KEY='3cc8784843848f7fc60ac25281f87ecb' bundle exec jekyll algolia"
-source $(dirname $(gem which colorls))/tab_complete.sh
+alias yo="yo"
+alias vs="code ."
+alias dewebpng='find . -name "*.webp" | xargs -I {} dwebp {} -o {}.png'
+alias dewebpgif='find . -name "*.webp" | xargs -I {} dwebp {} -o {}.gif'
+alias dewebpjpg='find . -name "*.webp" | xargs -I {} dwebp {} -o {}.jpg'
+alias mp3="youtube-dl -i --extract-audio --audio-format mp3 --audio-quality 0"
+alias mkv="youtube-dl --merge-output-format mkv"
+alias mp4="youtube-dl --merge-output-format mp4"
+alias mp3play="youtube-dl -ict --yes-playlist --extract-audio --audio-format mp3 --audio-quality 0 "
+# alias docs="GIT_USER=twhite96 CURRENT_BRANCH=source yarn run publish-gh-pages"
+# source $(dirname $(gem which colorls))/tab_complete.sh
 alias ls='colorls --dark --sort-dirs --report -A --gs'
-alias lc='colorls --tree --dark -A'
+alias lc='colorls --dark --sort-dirs --report -A --gs --tree'
+alias newpost="./scripts/newPost.js"
+alias newdraft="./scripts/newDraftPost.js"
+alias newdd="./scripts/newDevDraftPost.js"
+alias newcans="./scripts/newHeadphonesPost.js"
+alias newbag="./scripts/newBagPost.js"
+alias newfit="./scripts/newFitnessPost.js"
+alias newscreen="./scripts/newHomescreenPost.js"
+alias newdcans="./scripts/newDraftHeadphonesPost.js"
+alias newdbag="./scripts/newDraftBagPost.js"
+alias newdscreen="./scripts/newDraftHomescreenPost.js"
+alias newdfit="./scripts/newFitDraftPost.js"
+alias newdbk="./scripts/newFitDraftPost.js"
+alias sssh="git secrets --install"
+alias inspect="npx lockfile-lint --path yarn.lock --type yarn --validate-https --allowed-hosts yarnpkg.org"
+alias inruby="rvm install 2.6.x --with-openssl-lib=/usr/local/opt/openssl/lib --with-openssl-include=/usr/local/opt/openssl/include"
+alias b="yarn && yarn start"
+alias jeksdoc="docker-compose up"
+alias python=/usr/local/bin/python3
 # push my changes to my github master branch and open the page
 # The commit message will always be "push from terminal" since I'll probably just be adding more resources or checking things off when using this
 alias pg-gh='cd ~/Desktop/Git_Repositories/personal-goals &&
@@ -322,6 +378,11 @@ alias l="exa -l"
 alias copyssh="pbcopy < $HOME/.ssh/id_rsa.pub"
 alias alz="alias | fzf"
 
+############################
+# mosh firewall workaround #
+############################
+
+alias firepower='sudo /usr/libexec/ApplicationFirewall/socketfilterfw'
 
 ########################
 # Terminalizer Aliases #
@@ -334,6 +395,12 @@ alias tplay='terminalizer play'
 alias tgen='terminalizer generate'
 alias tshare='terminalizer share'
 
+##################
+# Timing Support #
+##################
+
+PROMPT_TITLE='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
+export PROMPT_COMMAND="${PROMPT_TITLE}; ${PROMPT_COMMAND}"
 
 ###################
 # BUILDING PROMPT #
@@ -370,7 +437,9 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # _SYMBOL="%{$fg[red]%}➭%{$fg[yellow]%}➭%{$fg[cyan]%}➭ "
 # _SYMBOL="<< $(random_emoji) >> "
 
-
+# Pure Prompt
+autoload -U promptinit; promptinit
+prompt pure
 
 # #####################
 # Git Prompt Builder #
@@ -409,24 +478,30 @@ fpath=(/usr/local/share/zsh-completions $fpath)
 # Location Path Setter #
 ########################
 
-# function get_pwd(){
-#   git_root=$PWD
-#   while [[ $git_root != / && ! -e $git_root/.git ]]; do
-#     git_root=$git_root:h
-#   done
-#   if [[ $git_root = / ]]; then
-#     unset git_root
-#     prompt_short_dir=%~
-#   else
-#     parent=${git_root%\/*}
-#     prompt_short_dir=${PWD#$parent/}
-#   fi
-#   echo $prompt_short_dir
-# }
+function get_pwd(){
+  git_root=$PWD
+  while [[ $git_root != / && ! -e $git_root/.git ]]; do
+    git_root=$git_root:h
+  done
+  if [[ $git_root = / ]]; then
+    unset git_root
+    prompt_short_dir=%~
+  else
+    parent=${git_root%\/*}
+    prompt_short_dir=${PWD#$parent/}
+  fi
+  echo $prompt_short_dir
+}
 
 function acp() {
   git add .
   git commit -m "Update something"
+  git push
+}
+
+function zet() {
+  git add .
+  git commit -m "Add knowledge"
   git push
 }
 
@@ -453,27 +528,28 @@ function acp() {
          fi
     }
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 source /Users/tiffanywhite/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# Angular CLI fix
-
+BROWSER=Chrome; export BROWSER
 EDITOR=Code; export EDITOR
 
 eval "$(hub alias -s)"
 export GITHUB_TOKEN=$token
 
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc
+# echo 'export PATH="/usr/local/opt/openssl/bin:$PATH"' >> ~/.zshrc
 
+export LDFLAGS="-L/usr/local/opt/openssl/lib"
+export CPPFLAGS="-I/usr/local/opt/openssl/include"
+export PKG_CONFIG_PATH="/usr/local/opt/openssl/lib/pkgconfig"
 
-export CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include"
-export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib"
+# export CPPFLAGS="-I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include"
+# export LDFLAGS="-L/usr/local/opt/openssl/lib -L/usr/local/opt/readline/lib"
 
-export RBENV_ROOT=/usr/local/var/rbenv
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# export RBENV_ROOT=/usr/local/var/rbenv
+# if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # echo -e "\033]6;1;bg;red;brightness;23\a"
 # echo -e "\033]6;1;bg;green;brightness;52\a"
@@ -483,66 +559,16 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 . $HOME/.asdf/completions/asdf.bash
 export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
-export PATH="/usr/local/opt/openssl/bin:$PATH"
+# export PATH="/usr/local/opt/ruby/bin:$PATH"
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+# export PS1="\\$ "
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+export PATH="$PATH:/opt/yarn-[1.22.4]/bin"
+export PATH="$PATH:`yarn global bin`"
+  # Set Spaceship ZSH as a prompt
+  # autoload -U promptinit; promptinit
+  # prompt spaceship

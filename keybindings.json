@@ -1,0 +1,39 @@
+// Place your key bindings in this file to override the defaultsauto[]
+[
+  {
+    "key": "ctrl+alt+l",
+    "command": "workbench.action.showCommands"
+  },
+  {
+    "key": "shift+cmd+p",
+    "command": "-workbench.action.showCommands"
+  },
+  {
+    "key": "cmd+",
+    "command": "workbench.action.toggleMultiCursorModifier"
+  },
+  {
+    "key": "alt+cmd+b",
+    "command": "workbench.action.tasks.build"
+  },
+  {
+    "key": "shift+cmd+b",
+    "command": "-workbench.action.tasks.build"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "workbench.view.explorer"
+  },
+  {
+    "key": "shift+cmd+e",
+    "command": "-workbench.view.explorer"
+  },
+  {
+    "key": "shift+cmd+b",
+    "command": "workbench.action.toggleSidebarVisibility"
+  },
+  {
+    "key": "cmd+b",
+    "command": "-workbench.action.toggleSidebarVisibility"
+  }
+]
