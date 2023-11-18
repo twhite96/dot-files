@@ -1,0 +1,9 @@
+# XONSH WEBCONFIG START
+$PROMPT = '{INTENSE_RED}{user}{RESET} at {INTENSE_PURPLE}{hostname}{RESET} in {BOLD_GREEN}{cwd}{RESET}\r\n↪ '
+
+$PL_PROMPT='cwd>branch'
+$PL_RPROMPT = '!'  # for no toolbar
+$PL_TOOLBAR = 'who>virtualenv>branch>cwd>full_proc'
+xontrib load powerline2
+# XONSH WEBCONFIG END
+

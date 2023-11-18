@@ -1,9 +1,5 @@
-# dot-files
+# Dot Files
+> A couple config files for your perusal.
 
-Config files for:
 
-* *Oh My Zsh*
-* *Browsersync*
-* *_config.yml for my Jekyll Blog*
-* *And [atom-ternjs](https://atom.io/packages/atom-ternjs)*
 
