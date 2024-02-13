@@ -1,0 +1,160 @@
+# espanso match file
+
+# For a complete introduction, visit the official docs at: https://espanso.org/docs/
+
+# global_vars:
+#   - name: "ytdlpaudio"
+#     type: "shell"
+#     params:
+#       cmd: "yt-dlp -o  --extract-audio --audio-format mp3 --audio-quality  320K --embed-thumbnail"
+#   - name: "yturl"
+#     type: "clipboard"
+#     params:
+#       echo: "Hey"
+
+# You can use this file to define the base matches (aka snippets)
+# that will be available in every application when using espanso.
+
+# Matches are substitution rules: when you type the "trigger" string
+# it gets replaced by the "replace" string.
+matches:
+  # Simple text replacement
+  - trigger: ":espanso"
+    replace: "Hi there!"
+  
+
+# -------------------------------------------------------------------
+# Dynamic triggers for shell commands
+# ------------------------------------------------------------------- 
+  - trigger: ":dlpaudio"
+    replace: "yt-dlp '{{url}}'  -x --audio-format 'mp3' --audio-quality 320 --embed-thumbnail -o '%(title)s.%(ext)s'"
+    vars:
+      - name: url
+        type: clipboard
+          
+
+  # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+  # But matches can also be dynamic:
+
+  # Print the current date
+
+# -------------------------------------------------------------------
+# Functional triggers
+# -------------------------------------------------------------------
+  - trigger: ":date"
+    replace: "{{mydate}}"
+    vars:
+      - name: mydate
+        type: date
+        params:
+          format: "%Y-%m-%d"
+
+# -------------------------------------------------------------------
+# My Websites
+# -------------------------------------------------------------------
+
+  - trigger: ":tlweb"
+    replace: "https://tifflabs.org"
+
+  - trigger: ":tldocs"
+    replace: "https://docs.tifflabs.org"
+
+  - trigger: ":tllinks"
+    replace: "https://links.tifflabs.org"
+
+  - trigger: ":tlhconfig"
+    replace: "https://homelab.tifflabs.org"
+
+  - trigger: ":0xhw"
+    replace: "https://htb-writeups.0x8c.org"
+
+  - trigger: ":0xw"
+    replace: "https://wiki.0x8c.org"
+
+  - trigger: ":0xa"
+    replace: "https://about.0x8c.org"
+
+  - trigger: ":0xn"
+    replace: "https://notes.0x8c.org"
+
+  - trigger: ":0x"
+    replace: "https://0x8c.org"
+
+
+  # Print the output of a shell command
+  - trigger: ":shell"
+    replace: "{{output}}"
+    vars:
+      - name: output
+        type: shell
+        params:
+          cmd: "echo 'Hello from your shell'"
+
+  # And much more! For more information, visit the docs: https://espanso.org/docs/
+
+# -------------------------------------------------------------------
+# Commonly typed websites
+# -------------------------------------------------------------------
+
+  - trigger: ":htb"
+    replace: "HackTheBox"
+
+  - trigger: ":tcm"
+    replace: "TCM Security"
+
+  - trigger: ":gt"
+    replace: "GitHub"
+
+  - trigger: ":lin"
+    replace: "LinkedIn"
+
+  - trigger: ":yt"
+    replace: "YouTube"
+
+
+# -------------------------------------------------------------------
+# My social media accounts
+# -------------------------------------------------------------------
+
+  - trigger: ":li"
+    replace: "https://linkedin.com/in/tiffanyrwhite"
+
+  - trigger: ":gi"
+    replace: "https://github.com/twhite96"
+
+  - trigger: ":good"
+    replace: "https://www.goodreads.com/0x8c"
+
+  - trigger: ":tubehacks"
+    replace: "https://www.youtube.com/@duvallhacks"
+
+  - trigger: ":tubelabs"
+    replace: "https://www.youtube.com/@tifflabs"
+
+  - trigger: ":mastlabs"
+    replace: "https://fosstodon.org/@tiff"
+
+  - trigger: ":infomast"
+    replace: "https://infosec.exchange/@tiff"
+
+  - trigger: ":botmast"
+    replace: "https://infosec.exchange/@0x8c"
+
+  - trigger: ":defconmast"
+    replace: "https://defcon.social/@0x8c"
+
+
+
+# -------------------------------------------------------------------
+# Accounts (not for commiting to config GitHub)
+# -------------------------------------------------------------------
+
+
+# -------------------------------------------------------------------
+# Emails (not for commiting to config GitHub)
+# -------------------------------------------------------------------
+
+# -------------------------------------------------------------------
+# Canned responses
+# -------------------------------------------------------------------
