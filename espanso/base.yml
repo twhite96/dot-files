@@ -27,7 +27,7 @@ matches:
 # Dynamic triggers for shell commands
 # ------------------------------------------------------------------- 
   - trigger: ":dlpaudio"
-    replace: "yt-dlp '{{url}}'  -x --audio-format 'mp3' --audio-quality 320 --embed-thumbnail -o '%(title)s.%(ext)s'"
+    replace: "yt-dlp '{{url}}'  --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality  320K --embed-thumbnail -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' --yes-playlist "
     vars:
       - name: url
         type: clipboard
