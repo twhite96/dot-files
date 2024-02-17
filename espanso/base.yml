@@ -21,18 +21,24 @@ matches:
   # Simple text replacement
   - trigger: ":espanso"
     replace: "Hi there!"
-  
 
 # -------------------------------------------------------------------
 # Dynamic triggers for shell commands
 # ------------------------------------------------------------------- 
+
+
+##################### yt-dlp #####################
   - trigger: ":dlpaudio"
     replace: "yt-dlp '{{url}}'  --ignore-errors --format bestaudio --extract-audio --audio-format mp3 --audio-quality  320K --embed-thumbnail -o '%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' --yes-playlist "
     vars:
       - name: url
         type: clipboard
           
-
+  - trigger: ":dlpallv"
+    replace: "yt-dlp '{{url}}'  -o '%(uploader)s/%(playlist)s/%(playlist_index)s - %(title)s.%(ext)s' -f '(bv*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv*+ba/b)'' --no-warnings"
+    vars:
+      - name: url
+        type: clipboard
   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
 
   # But matches can also be dynamic:
