@@ -35,7 +35,7 @@ matches:
         type: clipboard
           
   - trigger: ":dlpallv"
-    replace: "-o '%%(uploader)s/%%(playlist)s/%%(playlist_index)s - %%(title)s.%%(ext)'{{url}}' -f '(bv*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv*+ba/b)' --no-warnings"
+    replace: "yt-dlp -o '%%(title)s.%%(ext)'{{url}}' -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b' --no-warnings"
     vars:
       - name: url
         type: clipboard
