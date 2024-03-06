@@ -35,11 +35,13 @@ matches:
         type: clipboard
           
   - trigger: ":dlpallv"
-    replace: "yt-dlp -o '%%(title)s.%%(ext)s' '{{url}}'  -f 'bv*[ext=mp4]+ba[ext=m4a]/b[ext=mp4] / bv*+ba/b'  --no-warnings  --restrict-filenames"
+    replace: "-o '%%(uploader)s/%%(playlist)s/%%(playlist_index)s - %%(title)s.%%(ext)'{{url}}' -f '(bv*[vcodec~='^((he|a)vc|h26[45])']+ba) / (bv*+ba/b)' --no-warnings"
     vars:
       - name: url
         type: clipboard
   # NOTE: espanso uses YAML to define matches, so pay attention to the indentation!
+
+
 
   # But matches can also be dynamic:
 
